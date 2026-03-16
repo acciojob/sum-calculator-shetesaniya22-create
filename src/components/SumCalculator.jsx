@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function SumCalculator() {
   const [numbers, setNumbers] = useState([]);
@@ -24,7 +24,12 @@ function SumCalculator() {
       <form>
         <h1>Sum Calculator</h1>
 
-        <input type="number" name="number" id="number" onBlur={handleChange} />
+        <input
+          type="number"
+          name="number"
+          id="number"
+          onChange={handleChange}
+        />
 
         <p>Sum: {sum}</p>
       </form>
