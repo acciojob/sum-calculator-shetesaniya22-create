@@ -1,18 +1,25 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function SumCalculator() {
   const [numbers, setNumbers] = useState([]);
   const [sum, setSum] = useState(0);
+  const [value, setValue] = useState("");
 
   const handleChange = (e) => {
-    const value = parseInt(e.target.value);
+    setValue(e.target.value);
+  };
 
-    if (!isNaN(value)) {
-      setNumbers([...numbers, value]);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const num = parseInt(value);
+
+      if (!isNaN(num)) {
+        setNumbers([...numbers, num]);
+      }
+
+      setValue("");
     }
-
-    e.target.value = "";
   };
 
   useEffect(() => {
@@ -21,20 +28,19 @@ function SumCalculator() {
   }, [numbers]);
 
   return (
-    <>
-      <form>
-        <h1>Sum Calculator</h1>
+    <form>
+      <h1>Sum Calculator</h1>
 
-        <input
-          type="number"
-          name="number"
-          id="number"
-          onChange={handleChange}
-        />
+      <input
+        type="number"
+        id="number"
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
 
-        <p>Sum: {sum}</p>
-      </form>
-    </>
+      <p>Sum: {sum}</p>
+    </form>
   );
 }
 
