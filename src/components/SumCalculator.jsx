@@ -26,7 +26,7 @@ function SumCalculator() {
 
         <input type="number" name="number" id="number" onBlur={handleChange} />
 
-        <h2>Sum: {sum}</h2>
+        <p>Sum: {sum}</p>
       </form>
     </>
   );
