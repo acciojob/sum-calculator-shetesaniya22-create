@@ -3,22 +3,12 @@ import React, { useEffect, useState } from "react";
 function SumCalculator() {
   const [numbers, setNumbers] = useState([]);
   const [sum, setSum] = useState(0);
-  const [value, setValue] = useState("");
 
   const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+    const value = parseInt(e.target.value);
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const num = parseInt(value);
-
-      if (!isNaN(num)) {
-        setNumbers([...numbers, num]);
-      }
-
-      setValue("");
+    if (!isNaN(value)) {
+      setNumbers([...numbers, value]);
     }
   };
 
@@ -31,13 +21,7 @@ function SumCalculator() {
     <form>
       <h1>Sum Calculator</h1>
 
-      <input
-        type="number"
-        id="number"
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
+      <input type="number" id="number" onChange={handleChange} />
 
       <p>Sum: {sum}</p>
     </form>
